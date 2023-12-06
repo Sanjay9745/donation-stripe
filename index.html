@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stripe Payment</title>
+</head>
+<body>
+  <h1>Stripe Payment</h1>
+  <input type="number" id="amount">
+  <!-- Button to trigger payment -->
+  <button onclick="pay()">Pay Now</button>
+
+
+    <!-- Stripe JavaScript library -->
+    <script>
+        function pay(){
+          const amount = document.getElementById("amount").value;
+
+             fetch(`${process.env.DOMAIN}/create-checkout-session`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      amount: amount,
+    }),
+  })
+    .then(res => {
+      if (res.ok) return res.json()
+      return res.json().then(json => Promise.reject(json))
+    })
+    .then(({ url }) => {
+      window.location = url
+    })
+    .catch(e => {
+      console.error(e.error)
+    })
+        }
+    </script>
+</body>
+</html>
