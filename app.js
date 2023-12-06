@@ -135,7 +135,7 @@ console.log(amount);
     }] ,
     mode: "payment",
     success_url: `${process.env.DOMAIN}/success`,
-    success_url: `${process.env.DOMAIN}/cancel`,
+    cancel_url: `${process.env.DOMAIN}/cancel`,
   });
 
   res.json({url: session.url});
