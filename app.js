@@ -146,7 +146,7 @@ app.get("/success", (req, res) => {
 });
 
 app.get("/cancel", (req, res) => {
-  res.send("cancel");
+  res.send("...");
 });
 
 app.listen(port, () => {
